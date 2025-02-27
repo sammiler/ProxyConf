@@ -1,0 +1,36 @@
+####nginx和xiaoya的docker配置文件
+version: '3' 
+
+services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"    # 宿主机 80 -> Nginx 80
+      - "443:443"  # 宿主机 443 -> Nginx 443
+    volumes:
+      - /root/Docker/nginx/conf:/etc/nginx
+      - /root/Docker/nginx/html:/usr/share/nginx/html
+      - /root/Docker/nginx/logs:/var/log/nginx
+      - /root/Docker/nginx/certs:/etc/nginx/certs
+    networks:
+      - my_network  #需要创建一个网络
+
+  xiaoya:
+    image: xiaoyaliu/alist:latest
+    container_name: xiaoya
+    restart: always
+    ports:
+      - "2345:2345"
+      - "2346:2346"
+      - "2347:2347"
+      - "5678:80"
+    volumes:
+      - /etc/xiaoya:/data
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
