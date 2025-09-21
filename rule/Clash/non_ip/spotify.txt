@@ -25,3 +25,4 @@ DOMAIN-SUFFIX,spotifynewsroom.jp
 DOMAIN-SUFFIX,spotilocal.com
 DOMAIN-SUFFIX,tospotify.com
 DOMAIN-KEYWORD,spotify
+PROCESS-NAME,com.spotify.music
